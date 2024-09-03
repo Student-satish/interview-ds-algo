@@ -30,3 +30,28 @@ class Solution {
         return solve(0, 0, text1, text2,dp);
     }
 }
+
+// top down approach
+class TopDown {
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n = text1.length() , m = text2.length();
+        // step - 1 : create dp array of size (n + 1) * (m + 1);
+        int[][] dp = new int[n+1][m+1];
+        // base case : if any string length is zero return 0
+        // so store 0's in first column and first row
+        // dp[i][j] means having s1 of length i and s2 of length j we will store max subsequence till i $ j lengths of two strings
+        for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= m; j++) {
+                // case when two character equal
+                if(text1.charAt(i-1) == text2.charAt(j-1)) {
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else {
+                    // not equal case
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        // finally here we will store max subsequence  till n and m lengths of two strings
+        return dp[n][m];
+    }
+}
