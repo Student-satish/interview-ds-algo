@@ -9,20 +9,13 @@ class Solution {
         }
         long score = 0;
         while (!pq.isEmpty()) {
-            while (!pq.isEmpty() && st.contains(pq.peek()[1])) {
-                pq.poll();
-            }
-            if (!pq.isEmpty()) {
-                int[] top = pq.poll();
-                int el = top[0], idx = top[1];
-                score += el;
-                if (idx + 1 < n) {
-                    st.add(idx + 1);
-                }
-                if (idx - 1 >= 0) {
-                    st.add(idx - 1);
-                }
-            }
+            int[] top = pq.poll();
+            int el = top[0], idx = top[1];
+            if (st.contains(idx))
+                continue;
+            score += el;
+            st.add(idx + 1);
+            st.add(idx - 1);
         }
         return score;
     }
