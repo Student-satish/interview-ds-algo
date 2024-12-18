@@ -15,3 +15,19 @@ class Solution {
         return ans;
     }
 }
+
+
+class Solution {
+    public int[] finalPrices(int[] prices) {
+        Stack<Integer> s = new Stack<>();
+        int[] ans = prices.clone();
+        for(int i = 0; i < prices.length; i++) {
+            while(!s.isEmpty() && prices[s.peek()] >= prices[i]) {
+                ans[s.peek()]  -=  prices[i];
+                s.pop();
+            }
+            s.push(i);
+        }
+        return ans;
+    }
+}
