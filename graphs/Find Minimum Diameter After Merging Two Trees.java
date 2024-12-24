@@ -53,6 +53,9 @@ class Solution {
         return extremeNode;
     }
     public int minimumDiameterAfterMerge(int[][] edges1, int[][] edges2) {
+        // logic
+        // if we join two trees through extreme nodes diameter will be larger
+        // so try to join two trees through middle nodes diameter will be minimized
 
         // For graph1
         int n = edges1.length + 1;
